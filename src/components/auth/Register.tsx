@@ -22,25 +22,27 @@ const RegisterForm = () => {
 
     const { name, email, password } = formData;
 
-    //check if localstorage is empty
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    if (typeof window !== "undefined") {
+      //check if localstorage is empty
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
 
-    //check if email already exists
-    const userExists = users.some(
-      (user: { email: string }) => user.email === email
-    );
+      //check if email already exists
+      const userExists = users.some(
+        (user: { email: string }) => user.email === email
+      );
 
-    if (!userExists) {
-      users.push({ name, email, password });
+      if (!userExists) {
+        users.push({ name, email, password });
 
-      //save values to localstorage
+        //save values to localstorage
 
-      localStorage.setItem("users", JSON.stringify(users));
-      toast.success("Account Register Success");
+        localStorage.setItem("users", JSON.stringify(users));
+        toast.success("Account Register Success");
 
-      router.push("/sign-in");
-    } else {
-      toast.error("Email already registered");
+        router.push("/sign-in");
+      } else {
+        toast.error("Email already registered");
+      }
     }
   };
   return (

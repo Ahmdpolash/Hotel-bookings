@@ -12,7 +12,10 @@ const LoginForm = () => {
   const router = useRouter();
 
   //get users info from local storage
-  const users = JSON.parse(localStorage.getItem("users") ?? "[]");
+  const users =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("users") ?? "[]")
+      : [];
 
   const [formData, setFormData] = React.useState<LoginValues>({
     email: "",
