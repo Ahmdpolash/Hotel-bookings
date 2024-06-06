@@ -52,10 +52,10 @@ const Navbar = () => {
       <Link href="/" className="lg:ml-4">
         Home
       </Link>
-      <Link href="/hotels" className="lg:ml-4">
+      <Link href="/all-hotels" className="lg:ml-4">
         Hotels
       </Link>
-      <Link href="/hotels" className="lg:ml-4">
+      <Link href="/about-us" className="lg:ml-4">
         About Us
       </Link>
       <Link href="/my-bookings" className="lg:ml-4">
