@@ -32,8 +32,6 @@ const Login = () => {
       if (email == LocalEmail && password == LocalPassword) {
         toast.success("Login successful");
 
-        localStorage.setItem("isLogin", "true");
-
         router.push("/");
       } else {
         toast.error("Please check your credentials");

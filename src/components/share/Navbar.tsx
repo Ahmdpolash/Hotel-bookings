@@ -12,6 +12,7 @@ const Navbar = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
+  //get users data from localstorage
   const user = JSON.parse(localStorage.getItem("users") ?? "[]");
 
   //logout user
@@ -43,6 +44,8 @@ const Navbar = () => {
       document.removeEventListener("mousedown", close);
     };
   }, []);
+
+  //dropdown ended
 
   const navList = (
     <>
@@ -92,11 +95,22 @@ const Navbar = () => {
 
           <ul className="flex  flex-col p-5 gap-5 text-[18px]">{navList}</ul>
 
-          <Link href={"/sign-in"}>
-            <button className="flex justify-center items-center rounded-md bg-black w-full text-white py-2">
-              Login
-            </button>
-          </Link>
+          {user && user.length > 0 ? (
+            <div className="mx-auto flex justify-center items-center">
+              <button
+                className="bg-red-500   px-4 py-2 rounded-md text-white"
+                onClick={handleLogOut}
+              >
+                Log Out
+              </button>
+            </div>
+          ) : (
+            <Link href={"/sign-in"}>
+              <button className="flex justify-center items-center rounded-md bg-black w-full text-white py-2">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
 
         <div className="flex items-center">
@@ -104,7 +118,7 @@ const Navbar = () => {
             <>
               <div
                 ref={dropDownRef}
-                className="relative border border-blue-400 rounded-full py-1 px-2 mx-auto w-fit text-black"
+                className="relative hidden lg:block border border-blue-400 rounded-full py-1 px-2 mx-auto w-fit text-black"
               >
                 <button
                   className="flex gap-1 items-center"
@@ -153,11 +167,16 @@ const Navbar = () => {
                 Login
               </button>
               <IoMdMenu
-                className="text-2xl cursor-pointer lg:hidden ml-4"
+                className="text-2xl cursor-pointer block lg:hidden ml-4"
                 onClick={toggleMenu}
               />
             </>
           )}
+
+          <IoMdMenu
+            className="text-2xl lg:hidden cursor-pointer block  ml-4"
+            onClick={toggleMenu}
+          />
         </div>
       </div>
     </Wrapper>
