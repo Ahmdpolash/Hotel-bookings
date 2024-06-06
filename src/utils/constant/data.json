@@ -1,52 +1,58 @@
 [
-  {
-    "name": "Ocean View Resort",
-    "price": 150.0,
-    "image": "https://i.ibb.co/DG518DV/pexels-jean-van-der-meulen-1454806-1.jpg",
-    "description": "A luxurious resort with stunning ocean views, private beach access, and top-notch amenities.",
-    "location": "Malibu, CA",
-    "amenities": ["Free WiFi", "Swimming Pool", "Spa", "Gym"]
-  },
-  {
-    "name": "Mountain Escape Lodge",
-    "price": 120.0,
-    "image": "https://i.ibb.co/P5vd0rT/pexels-vecislavas-popa-1571450.jpg",
-    "description": "A cozy lodge nestled in the mountains, perfect for a peaceful getaway with hiking and skiing nearby.",
-    "location": "Aspen, CO",
-    "amenities": ["Free Breakfast", "Fireplace", "Hot Tub", "Pet Friendly"]
-  },
-  {
-    "name": "City Center Hotel",
-    "price": 200.0,
-    "image": "https://i.ibb.co/r6gxv4X/pexels-jean-van-der-meulen-1457845-1.jpg",
-    "description": "A modern hotel located in the heart of the city, offering easy access to popular attractions and business centers.",
-    "location": "New York, NY",
-    "amenities": [
-      "Room Service",
-      "Free WiFi",
-      "Fitness Center",
-      "Business Center"
-    ]
-  },
-  {
-    "name": "Lakefront Inn",
-    "price": 90.0,
-    "image": "https://i.ibb.co/Pz5TZMF/pexels-ben-mack-6775268.jpg",
-    "description": "A charming inn situated on the lakefront, offering beautiful views and relaxing atmosphere.",
-    "location": "Lake Tahoe, NV",
-    "amenities": [
-      "Free Parking",
-      "Breakfast Included",
-      "Boat Rentals",
-      "Pet Friendly"
-    ]
-  },
-  {
-    "name": "Desert Oasis Resort",
-    "price": 180.0,
-    "image": "https://i.ibb.co/Pz5TZMF/pexels-ben-mack-6775268.jpg",
-    "description": "An exclusive resort in the desert, featuring luxurious accommodations, a spa, and fine dining.",
-    "location": "Palm Springs, CA",
-    "amenities": ["Free WiFi", "Swimming Pool", "Spa", "Golf Course"]
-  }
-]
+    {
+      "id": 1,
+      "name": "Ocean View Resort",
+      "price": 150.0,
+      "image": "https://i.ibb.co/DG518DV/pexels-jean-van-der-meulen-1454806-1.jpg",
+      "description": "A luxurious resort with stunning ocean views, private beach access, and top-notch amenities.",
+      "location": "Malibu, CA",
+      "amenities": ["Free WiFi", "Swimming Pool", "Spa", "Gym"]
+    },
+    {
+      "id": 2,
+      "name": "Mountain Escape Lodge",
+      "price": 120.0,
+      "image": "https://i.ibb.co/P5vd0rT/pexels-vecislavas-popa-1571450.jpg",
+      "description": "A cozy lodge nestled in the mountains, perfect for a peaceful getaway with hiking and skiing nearby.",
+      "location": "Aspen, CO",
+      "amenities": ["Free Breakfast", "Fireplace", "Hot Tub", "Pet Friendly"]
+    },
+    {
+      "id": 3,
+      "name": "City Center Hotel",
+      "price": 200.0,
+      "image": "https://i.ibb.co/r6gxv4X/pexels-jean-van-der-meulen-1457845-1.jpg",
+      "description": "A modern hotel located in the heart of the city, offering easy access to popular attractions and business centers.",
+      "location": "New York, NY",
+      "amenities": [
+        "Room Service",
+        "Free WiFi",
+        "Fitness Center",
+        "Business Center"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Lakefront Inn",
+      "price": 90.0,
+      "image": "https://i.ibb.co/Pz5TZMF/pexels-ben-mack-6775268.jpg",
+      "description": "A charming inn situated on the lakefront, offering beautiful views and relaxing atmosphere.",
+      "location": "Lake Tahoe, NV",
+      "amenities": [
+        "Free Parking",
+        "Breakfast Included",
+        "Boat Rentals",
+        "Pet Friendly"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Desert Oasis Resort",
+      "price": 180.0,
+      "image": "https://i.ibb.co/Pz5TZMF/pexels-ben-mack-6775268.jpg",
+      "description": "An exclusive resort in the desert, featuring luxurious accommodations, a spa, and fine dining.",
+      "location": "Palm Springs, CA",
+      "amenities": ["Free WiFi", "Swimming Pool", "Spa", "Golf Course"]
+    }
+  ]
+  

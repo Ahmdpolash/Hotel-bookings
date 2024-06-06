@@ -52,14 +52,14 @@ const Navbar = () => {
       <Link href="/" className="lg:ml-4">
         Home
       </Link>
-      <Link href="/about" className="lg:ml-4">
-        About
+      <Link href="/hotels" className="lg:ml-4">
+        Hotels
       </Link>
-      <Link href="/contact" className="lg:ml-4">
-        Contact
+      <Link href="/hotels" className="lg:ml-4">
+        About Us
       </Link>
-      <Link href="/services" className="lg:ml-4">
-        Services
+      <Link href="/my-bookings" className="lg:ml-4">
+        My Bookings
       </Link>
     </>
   );
@@ -72,7 +72,10 @@ const Navbar = () => {
     <Wrapper>
       <div className="flex justify-between items-center">
         <div className="logo">
-          <h1>Logo</h1>
+          <h1 className="text-[20px]">
+            <span className="text-[22px] text-[#E11D48] font-bold">H</span>
+            Booking
+          </h1>
         </div>
 
         {/* Desktop menu */}
