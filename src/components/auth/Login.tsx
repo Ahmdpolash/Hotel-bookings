@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 type LoginValues = {
@@ -10,17 +10,22 @@ type LoginValues = {
 
 const LoginForm = () => {
   const router = useRouter();
-
-  //get users info from local storage
-  const users =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("users") ?? "[]")
-      : [];
-
+  const [users, setUsers] = useState<LoginValues[]>([]);
   const [formData, setFormData] = React.useState<LoginValues>({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem("users") ?? "[]");
+    setUsers(storedUsers);
+  }, []);
+
+  //get users info from local storage
+  // const users =
+  //   typeof window !== "undefined"
+  //     ? JSON.parse(localStorage.getItem("users") ?? "[]")
+  //     : [];
 
   // form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
