@@ -1,11 +1,7 @@
-
-import RegisterForm from "@/components/auth/Register";
 import React from "react";
-
+import RegisterForm from "@/components/auth/Register";
 
 const Register = () => {
- 
-
   return (
     <div>
       <>
@@ -15,10 +11,9 @@ const Register = () => {
             <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
               Registration !
             </h1>
-            <RegisterForm/>
+            <RegisterForm />
           </div>
         </div>
-
       </>
     </div>
   );
