@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/share/Footer";
 import Navbar from "@/components/share/Navbar";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -14,7 +15,7 @@ const BaseLayout = ({ children }: { children: React.ReactNode }) => {
         <div>
           <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </div>
       )}
     </div>

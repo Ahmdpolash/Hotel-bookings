@@ -11,7 +11,9 @@ const Register = () => {
             <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
               Registration !
             </h1>
-            <RegisterForm />
+            <div>
+              <RegisterForm />
+            </div>
           </div>
         </div>
       </>

@@ -69,7 +69,7 @@ const Navbar = () => {
   };
 
   return (
-   <div className="border-b border-slate-200 shadow-md">
+    <div className="border-b border-slate-200 shadow-md">
       <Wrapper>
         <div className="flex justify-between  items-center">
           <div className="logo">
@@ -78,17 +78,17 @@ const Navbar = () => {
               Booking
             </h1>
           </div>
-  
+
           {/* Desktop menu */}
           <div className="hidden lg:block ">
             <ul className="lg:flex lg:gap-4">{navList}</ul>
           </div>
-  
+
           {/* Mobile menu */}
           <div
             className={`${
               open ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
-            } lg:hidden transition-all fixed duration-500 border border-gray-200 shadow-lg backdrop-blur-sm transform w-[350px] bg-white text-black h-screen top-0 left-0`}
+            } lg:hidden transition-all fixed z-50 duration-500 border border-gray-200 shadow-lg backdrop-blur-sm transform w-[350px] bg-white text-black h-screen top-0 left-0`}
           >
             <button
               className="px-4 py-2 text-3xl font-semibold flex absolute right-0 mt-2"
@@ -96,9 +96,9 @@ const Navbar = () => {
             >
               <RxCross1 />
             </button>
-  
+
             <ul className="flex  flex-col p-5 gap-5 text-[18px]">{navList}</ul>
-  
+
             {user && user.length > 0 ? (
               <div className="mx-auto flex justify-center items-center">
                 <button
@@ -116,7 +116,7 @@ const Navbar = () => {
               </Link>
             )}
           </div>
-  
+
           <div className="flex items-center">
             {user && user.length > 0 ? (
               <>
@@ -135,7 +135,7 @@ const Navbar = () => {
                       src="https://source.unsplash.com/300x300/?profile"
                       alt="avatar drop down navigate ui"
                     />
-  
+
                     <h3>{user[0]?.name}</h3>
                     <FaAngleDown />
                   </button>
@@ -176,7 +176,7 @@ const Navbar = () => {
                 />
               </>
             )}
-  
+
             <IoMdMenu
               className="text-2xl lg:hidden cursor-pointer block  ml-4"
               onClick={toggleMenu}
@@ -184,7 +184,7 @@ const Navbar = () => {
           </div>
         </div>
       </Wrapper>
-   </div>
+    </div>
   );
 };
 

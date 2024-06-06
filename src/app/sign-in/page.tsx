@@ -10,7 +10,9 @@ const Login = () => {
             <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
               Login !
             </h1>
-            <LoginForm />
+            <div>
+              <LoginForm />
+            </div>
           </div>
         </div>
       </>

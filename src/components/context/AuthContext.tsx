@@ -1,5 +1,6 @@
 // src/context/AuthContext.tsx
 "use client";
+import axios from "axios";
 import React, {
   createContext,
   useState,
@@ -8,16 +9,22 @@ import React, {
   useEffect,
 } from "react";
 
+
+
 type ContextType = {
   user: string | null;
   login: (email: string) => void;
   logout: () => void;
+  
 };
 
 const AuthContext = createContext<ContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<string | null>(null);
+
+ 
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -42,8 +49,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
+// export const useAuth = () => {
+//   const context = useContext(AuthContext);
 
-  return context;
-};
+//   return context;
+// };
