@@ -42,7 +42,7 @@ const Bookings = () => {
             </div>
 
             <table className="lg:w-full mt-2  overflow-x-auto">
-              <thead className="border-b  overflow-x-auto text-slate-700 dark:text-white border-slate-600 py-2 h-8 rounded-md">
+              <thead className="border-b  overflow-x-auto text-slate-700  border-slate-600 py-2 h-8 rounded-md">
                 <tr className="">
                   <th className="py-2 lg:px-2 px-4 font-semibold text-[15px] lg:text-[16px]">
                     No
@@ -73,7 +73,7 @@ const Bookings = () => {
                         alt="img"
                       />
                     </td>
-                    <td className="whitespace-nowrap py-1 dark:text-white  text-slate-700">
+                    <td className="whitespace-nowrap py-1  text-slate-700">
                       {hotels?.name}
                     </td>
 

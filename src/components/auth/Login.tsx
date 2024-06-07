@@ -41,6 +41,9 @@ const LoginForm = () => {
         toast.success("Login successful");
 
         router.push("/");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } else {
         toast.error("Please check your credentials");
         // alert("wrong credentials");

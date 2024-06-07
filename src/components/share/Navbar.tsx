@@ -31,7 +31,7 @@ const Navbar = () => {
   //logout user
   const handleLogOut = () => {
     logout();
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   const toggleMenu = () => {
