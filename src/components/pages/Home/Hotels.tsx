@@ -4,20 +4,51 @@ import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { AuthProvider } from "@/components/context/AuthContext";
+import { AuthProvider, useAuth } from "@/components/context/AuthContext";
 import useHotels from "@/components/hooks/useHotels";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-type HotelDataTypes = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  location: string;
-  amenities: string[];
-};
+
 const Hotels = () => {
+  const router = useRouter();
   const { hotels } = useHotels();
+  const { user } = useAuth();
+
+  const bookingsRoom = JSON.parse(localStorage.getItem("bookings") || "[]");
+  const handleBookings = (
+    id: number,
+    name: string,
+    price: number,
+    image: string
+  ) => {
+    if (user && user.length > 0) {
+      const bookingExists = bookingsRoom.some(
+        (booking: { id: number }) => booking.id === id
+      );
+
+      if (!bookingExists) {
+        const data = {
+          id: id,
+          name: name,
+          price: price,
+          image: image,
+        };
+
+        bookingsRoom.push(data);
+
+        // Save values to localstorage
+        localStorage.setItem("bookings", JSON.stringify(bookingsRoom));
+
+        toast.success("Booking Successful");
+      } else {
+        toast.error("Room already booked");
+      }
+    } else {
+      toast.error("Please login to book");
+      router.push("/sign-in");
+    }
+  };
 
   return (
     <div className="py-6">
@@ -63,7 +94,17 @@ const Hotels = () => {
                       View Details
                     </button>
                   </Link>
-                  <button className="text-white bg-[#E11D48] hover:bg-[#111111] duration-300 mt-1 flex items-center justify-center w-[120px] font-medium p-2 rounded-full">
+                  <button
+                    onClick={() =>
+                      handleBookings(
+                        hotel.id,
+                        hotel.name,
+                        hotel.price,
+                        hotel.image
+                      )
+                    }
+                    className="text-white bg-[#E11D48] hover:bg-[#111111] duration-300 mt-1 flex items-center justify-center w-[120px] font-medium p-2 rounded-full"
+                  >
                     {" "}
                     Book Now
                   </button>

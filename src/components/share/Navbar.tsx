@@ -7,18 +7,20 @@ import Link from "next/link";
 import Wrapper from "./Wrapper";
 import { useRouter } from "next/navigation";
 import { FaAngleDown } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const { logout } = useAuth();
 
   //get users data from localstorage
   const user = JSON.parse(localStorage.getItem("users") ?? "[]");
 
   //logout user
   const handleLogOut = () => {
-    localStorage.removeItem("users");
-    window.location.href = "/";
+    logout();
+    window.location.href = "/login";
   };
 
   const toggleMenu = () => {
@@ -29,6 +31,8 @@ const Navbar = () => {
   const [openDrop, setOpenDrop] = useState(false);
   const dropDownRef = useRef<HTMLDivElement | null>(null);
   const items = ["Log Out"];
+
+  const bookingsRoom = JSON.parse(localStorage.getItem("bookings") || "[]");
 
   useEffect(() => {
     const close = (e: any) => {
@@ -58,6 +62,7 @@ const Navbar = () => {
       <Link href="/about-us" className="lg:ml-4">
         About Us
       </Link>
+
       <Link href="/my-bookings" className="lg:ml-4">
         My Bookings
       </Link>
@@ -66,6 +71,9 @@ const Navbar = () => {
 
   const handleRedirect = () => {
     router.push("/sign-in");
+  };
+  const navigateBookings = () => {
+    router.push("/my-bookings");
   };
 
   return (
@@ -142,7 +150,7 @@ const Navbar = () => {
                   <ul
                     className={`${
                       openDrop ? "visible duration-300" : "invisible"
-                    } absolute right-0 top-14 z-50 w-fit rounded-sm bg-slate-200 shadow-md`}
+                    } absolute right-0 top-14 z-50 w-[120px] w-fi rounded-sm bg-slate-200 shadow-md`}
                   >
                     {items.map((item, idx) => (
                       <li
@@ -154,11 +162,24 @@ const Navbar = () => {
                           item === "Log Out"
                             ? "text-red-500 hover:bg-red-600 hover:text-white"
                             : "hover:bg-slate-300"
-                        }`}
+                        }  `}
                       >
                         {item}
                       </li>
                     ))}
+
+                    {bookingsRoom && bookingsRoom.length > 0 ? (
+                      <li
+                        onClick={navigateBookings}
+                        className={`rounded-sm  hover:bg-red-600 text-center mx-auto hover:text-white px-2 py-2 cursor-pointer ${
+                          openDrop ? "opacity-100 duration-300" : "opacity-0"
+                        } `}
+                      >
+                        My Bookings
+                      </li>
+                    ) : (
+                      ""
+                    )}
                   </ul>
                 </div>
               </>

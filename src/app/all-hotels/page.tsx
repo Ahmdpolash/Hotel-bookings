@@ -7,15 +7,7 @@ import Link from "next/link";
 import { AuthProvider } from "@/components/context/AuthContext";
 import useHotels from "@/components/hooks/useHotels";
 
-type HotelDataTypes = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  location: string;
-  amenities: string[];
-};
+
 const AllHotels = () => {
   const { hotels } = useHotels();
 
