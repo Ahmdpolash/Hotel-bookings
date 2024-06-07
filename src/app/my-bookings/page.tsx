@@ -3,13 +3,20 @@
 import Wrapper from "@/components/share/Wrapper";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa";
 
 const Bookings = () => {
-  
-  const bookingsRoom = JSON.parse(localStorage.getItem("bookings") || "[]");
+  const [bookingsRoom, setBookingsRoom] = useState([]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedBookings = JSON.parse(
+        localStorage.getItem("bookings") || "[]"
+      );
+      setBookingsRoom(storedBookings);
+    }
+  }, []);
   return (
     <div>
       <Wrapper>

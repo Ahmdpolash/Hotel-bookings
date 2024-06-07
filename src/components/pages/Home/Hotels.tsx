@@ -9,7 +9,6 @@ import useHotels from "@/components/hooks/useHotels";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-
 const Hotels = () => {
   const router = useRouter();
   const { hotels } = useHotels();

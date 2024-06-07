@@ -7,7 +7,6 @@ import Link from "next/link";
 import { AuthProvider } from "@/components/context/AuthContext";
 import useHotels from "@/components/hooks/useHotels";
 
-
 const AllHotels = () => {
   const { hotels } = useHotels();
 
