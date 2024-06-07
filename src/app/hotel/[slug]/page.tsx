@@ -143,7 +143,6 @@ const SingleHotel = ({ params }: any) => {
                 <button className="text-white bg-[#BE123C] flex items-center justify-center w-[120px] font-semibold p-2 rounded-full">
                   Post Review
                 </button>{" "}
-                src={singleHotels?.image ?? ""} src={singleHotels?.image ?? ""}
               </form>
             </div>
             <div className="flex-1">

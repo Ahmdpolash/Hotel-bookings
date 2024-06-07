@@ -1,14 +1,65 @@
 "use client";
+
 import Wrapper from "@/components/share/Wrapper";
 import Image from "next/image";
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { AuthProvider } from "@/components/context/AuthContext";
+import { useAuth } from "@/components/context/AuthContext";
 import useHotels from "@/components/hooks/useHotels";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const AllHotels = () => {
+  const router = useRouter();
   const { hotels } = useHotels();
+  const { user } = useAuth();
+  const [bookingsRoom, setBookingsRoom] = useState([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedBookings = JSON.parse(
+        localStorage.getItem("bookings") || "[]"
+      );
+      setBookingsRoom(storedBookings);
+    }
+  }, []);
+
+  const handleBookings = (
+    id: number,
+    name: string,
+    price: number,
+    image: string
+  ) => {
+    if (user && user.length > 0) {
+      const bookingExists = bookingsRoom.some(
+        (booking: { id: number }) => booking.id === id
+      );
+
+      if (!bookingExists) {
+        const data = {
+          id: id,
+          name: name,
+          price: price,
+          image: image,
+        };
+
+        const updatedBookings = [...bookingsRoom, data];
+        setBookingsRoom(updatedBookings as any);
+
+        // Save values to localStorage
+        if (typeof window !== "undefined") {
+          localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+        }
+
+        toast.success("Booking Successful");
+      } else {
+        toast.error("Room already booked");
+      }
+    } else {
+      toast.error("Please login to book");
+      router.push("/sign-in");
+    }
+  };
 
   return (
     <div className="py-6">
@@ -23,11 +74,11 @@ const AllHotels = () => {
           </p>
         </div>
 
-        <div className=" mt-5 cursor-pointer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="mt-5 cursor-pointer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {hotels?.map((hotel, index) => (
             <div
               key={index}
-              className="shadow-2xl rounded-xl border hover:-translate-y-[7px] duration-500 m-1 "
+              className="shadow-2xl rounded-xl border hover:-translate-y-[7px] duration-500 m-1"
             >
               <div className="relative">
                 <Image
@@ -50,12 +101,20 @@ const AllHotels = () => {
                 <div className="flex items-center justify-between">
                   <Link className="mb-2" href={`/hotel/${hotel.id}`}>
                     <button className="text-white bg-[#111111] hover:bg-[#E11D48] duration-300 mt-1 flex items-center justify-center w-[120px] font-medium p-2 rounded-full">
-                      {" "}
                       View Details
                     </button>
                   </Link>
-                  <button className="text-white bg-[#E11D48] hover:bg-[#111111] duration-300 mt-1 flex items-center justify-center w-[120px] font-medium p-2 rounded-full">
-                    {" "}
+                  <button
+                    onClick={() =>
+                      handleBookings(
+                        hotel.id,
+                        hotel.name,
+                        hotel.price,
+                        hotel.image
+                      )
+                    }
+                    className="text-white bg-[#E11D48] hover:bg-[#111111] duration-300 mt-1 flex items-center justify-center w-[120px] font-medium p-2 rounded-full"
+                  >
                     Book Now
                   </button>
                 </div>
@@ -75,7 +134,6 @@ const AllHotels = () => {
                 className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
               >
                 <span className="sr-only">Previous</span>
-                {/* Heroicon name: chevron-left */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -135,7 +193,6 @@ const AllHotels = () => {
                 className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
               >
                 <span className="sr-only">Next</span>
-                {/* Heroicon name: chevron-right */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -154,6 +211,8 @@ const AllHotels = () => {
             </nav>
           </div>
         </div>
+
+        <Toaster />
       </Wrapper>
     </div>
   );

@@ -1,6 +1,5 @@
 // src/context/AuthContext.tsx
 "use client";
-import axios from "axios";
 import React, {
   createContext,
   useState,
@@ -21,7 +20,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("users");
     if (storedUser) {
       setUser(storedUser);
     }
@@ -29,12 +28,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = (email: string) => {
     setUser(email);
-    localStorage.setItem("user", email);
+    localStorage.setItem("users", email);
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("user");
+    localStorage.removeItem("users");
   };
 
   return (
