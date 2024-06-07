@@ -9,13 +9,24 @@ import { useRouter } from "next/navigation";
 import { FaAngleDown } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 
+type UserTypes = {
+  name: string;
+};
 const Navbar = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<UserTypes[]>([]);
+  const [bookingsRoom, setBookingsRoom] = useState([]);
+
   const { logout } = useAuth();
 
   //get users data from localstorage
-  const user = JSON.parse(localStorage.getItem("users") ?? "[]");
+  useEffect(() => {
+    const users = JSON.parse(localStorage.getItem("users") ?? "[]");
+
+    setUser(users);
+  }, []);
+  //get users data from localstorage
 
   //logout user
   const handleLogOut = () => {
@@ -32,7 +43,12 @@ const Navbar = () => {
   const dropDownRef = useRef<HTMLDivElement | null>(null);
   const items = ["Log Out"];
 
-  const bookingsRoom = JSON.parse(localStorage.getItem("bookings") || "[]");
+  //get bookings from localstorage
+  useEffect(() => {
+    const bookingsRooms = JSON.parse(localStorage.getItem("bookings") || "[]");
+
+    setBookingsRoom(bookingsRooms);
+  }, []);
 
   useEffect(() => {
     const close = (e: any) => {

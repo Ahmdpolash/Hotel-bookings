@@ -9,12 +9,26 @@ import useHotels from "@/components/hooks/useHotels";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
+type BookingTypes = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+};
 const Hotels = () => {
   const router = useRouter();
   const { hotels } = useHotels();
+  const [bookingsRoom, setBookingsRoom] = useState<BookingTypes[]>([]);
+
   const { user } = useAuth();
 
-  const bookingsRoom = JSON.parse(localStorage.getItem("bookings") || "[]");
+  //get bookings from localstorage
+  useEffect(() => {
+    const bookingsRooms = JSON.parse(localStorage.getItem("bookings") || "[]");
+
+    setBookingsRoom(bookingsRooms);
+  }, []);
+
   const handleBookings = (
     id: number,
     name: string,
