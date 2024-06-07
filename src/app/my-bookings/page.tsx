@@ -4,7 +4,8 @@ import Wrapper from "@/components/share/Wrapper";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaEye } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
+import { FaEye, FaTrash } from "react-icons/fa";
 
 const Bookings = () => {
   const [bookingsRoom, setBookingsRoom] = useState([]);
@@ -17,6 +18,18 @@ const Bookings = () => {
       setBookingsRoom(storedBookings);
     }
   }, []);
+
+  //delete bookings
+
+  const handleDelete = (id: number) => {
+    const updatedBookings = bookingsRoom.filter(
+      (booking: { id: number }) => booking?.id !== id
+    );
+    setBookingsRoom(updatedBookings);
+    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+    toast.success("Bookings deleted successfully");
+  };
+
   return (
     <div>
       <Wrapper>
@@ -64,12 +77,13 @@ const Bookings = () => {
                       {hotels?.name}
                     </td>
 
-                    <td className="">
-                      <div className="h-[27px] w-[27px] text-center mx-auto text-white  bg-[#BE123C] rounded-md">
-                        <Link href={`/hotel/${hotels?.id}`}>
-                          <FaEye className="text-[16px] mx-auto relative top-1  mt-4 ml-[6px]" />
-                        </Link>
-                      </div>
+                    <td className="flex justify-center items-center gap-2">
+                      <Link className="" href={`/hotel/${hotels?.id}`}>
+                        <FaEye className="text-[16px] text-blue-500 mx-auto relative top-1  mt-4 ml-[6px]" />
+                      </Link>
+                      <button onClick={() => handleDelete(hotels?.id)}>
+                        <FaTrash className="text-[16px] text-[#BE123C]  mx-auto relative top-1  mt-4 ml-[6px]" />
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -92,6 +106,8 @@ const Bookings = () => {
             </div>
           </div>
         )}
+
+        <Toaster />
       </Wrapper>
     </div>
   );
